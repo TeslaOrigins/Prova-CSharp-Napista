@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LojaAPI.Models
 {
-    public class ProdutoDbContext
+    public class ProdutoDbContext : DbContext
     {
         public DbSet<Produto> Loja { get; set; }
 

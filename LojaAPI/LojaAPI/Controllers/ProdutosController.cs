@@ -83,7 +83,7 @@ namespace LojaAPI.Controllers
             return CreatedAtAction("GetProduto", new { id = produto.Id }, produto);
         }
 
-        // DELETE: api/Movies/5
+        // DELETE: api/Produtos/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Produto>> DeleteMovie(int id)
         {
