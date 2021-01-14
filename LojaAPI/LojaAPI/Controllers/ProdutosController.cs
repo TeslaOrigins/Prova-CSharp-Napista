@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,10 @@ namespace LojaAPI.Controllers
     [ApiController]
     public class ProdutosController : ControllerBase
     {
+        private const int um = 1;
+        private const int tres = 3;
+        private const int cem = 100;
+
         private readonly ProdutoDbContext _context;
 
         public ProdutosController(ProdutoDbContext context)
@@ -22,6 +27,16 @@ namespace LojaAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Produto>>> GetProdutos()
         {
+            try
+            {
+                return await _context.Loja.ToListAsync();
+            } catch (Exception e)
+            {
+                if(e.Source != null)
+                {
+                    return BadRequest();
+                }
+            }
             return await _context.Loja.ToListAsync();
         }
 
@@ -77,9 +92,28 @@ namespace LojaAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Produto>> PostMovie(Produto produto)
         {
-            _context.Loja.Add(produto);
-            await _context.SaveChangesAsync();
+            try
+            {
+                if(produto.Nome.Length < tres)
+                {
+                    return ValidationProblem();
+                }
+                if(produto.Qtde_estoque < um || produto.Qtde_estoque > cem)
+                {
+                    return ValidationProblem();
+                }
 
+                _context.Loja.Add(produto);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                if (e.Source != null)
+                {
+                    return BadRequest();
+                }
+                throw;
+            }
             return CreatedAtAction("GetProduto", new { id = produto.Id }, produto);
         }
 
