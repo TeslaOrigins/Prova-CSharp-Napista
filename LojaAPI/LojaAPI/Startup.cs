@@ -11,7 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LojaAPI.Models;
+using LojaAPI.Models.Produtos;
+using LojaAPI.Models.Compras;
 
 namespace LojaAPI
 {
@@ -28,7 +29,8 @@ namespace LojaAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<ProdutoDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ProdutoDbConnectionString")));
+            services.AddDbContext<ProdutoDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LojaDbConnectionString")));
+            services.AddDbContext<CompraDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LojaDbConnectionString")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

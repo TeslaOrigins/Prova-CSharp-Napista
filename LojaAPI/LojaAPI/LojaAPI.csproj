@@ -5,13 +5,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\Compras\Cartao\**" />
+    <Content Remove="Models\Compras\Cartao\**" />
+    <EmbeddedResource Remove="Models\Compras\Cartao\**" />
+    <None Remove="Models\Compras\Cartao\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Controllers\WeatherForecastController.cs" />
     <Compile Remove="WeatherForecast.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="IKVM" Version="8.1.5717" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
   </ItemGroup>
 
 

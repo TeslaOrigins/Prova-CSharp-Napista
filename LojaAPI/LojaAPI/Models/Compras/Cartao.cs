@@ -8,13 +8,14 @@ namespace LojaAPI.Models.Compras
 {
     public class Cartao
     {
+        public java.lang.Integer Id { get; }
         [StringLength(60, MinimumLength = 3)]
         public String Titular { get; set; }
-        [StringLength(19, MinimumLength = 13)]
+        [StringLength(22, MinimumLength = 13)]
         public String Numero { get; set; }
         [Display(Name = "Data expiracao")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{yyyy-MM-dd:0}", ApplyFormatInEditMode = true)]
         public DateTime Data_expiracao { get; set; }
         [StringLength(20, MinimumLength = 3)]
         public String Bandeira { get; set; }
