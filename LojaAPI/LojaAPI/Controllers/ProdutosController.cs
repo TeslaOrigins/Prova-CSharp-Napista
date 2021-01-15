@@ -56,8 +56,6 @@ namespace LojaAPI.Controllers
         }
 
         // PUT: api/Produtos/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduto(int id, Produto produto)
         {
@@ -88,10 +86,8 @@ namespace LojaAPI.Controllers
         }
 
         // POST: api/Produtos
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Produto>> PostMovie(Produto produto)
+        public async Task<ActionResult<Produto>> PostProduto(Produto produto)
         {
             try
             {
@@ -120,7 +116,7 @@ namespace LojaAPI.Controllers
 
         // DELETE: api/Produtos/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Produto>> DeleteMovie(int id)
+        public async Task<ActionResult<Produto>> DeleteProduto(int id)
         {
             var produto = await _context.Loja.FindAsync(id);
             if (produto == null)

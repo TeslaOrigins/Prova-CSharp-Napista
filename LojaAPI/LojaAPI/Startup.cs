@@ -28,6 +28,7 @@ namespace LojaAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Latest);
             services.AddControllers();
             services.AddDbContext<ProdutoDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LojaDbConnectionString")));
             services.AddDbContext<CompraDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LojaDbConnectionString")));
@@ -49,7 +50,9 @@ namespace LojaAPI
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{action}");
             });
         }
     }
