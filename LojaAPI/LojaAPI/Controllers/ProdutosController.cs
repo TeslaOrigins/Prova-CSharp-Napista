@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using LojaAPI.Services;
 using LojaAPI.Models.Produtos;
+using LojaAPI.Models.Misc;
 using LojaAPI.Models;
 
 namespace LojaAPI.Controllers
@@ -13,16 +15,16 @@ namespace LojaAPI.Controllers
     [ApiController]
     public class ProdutosController : ControllerBase
     {
-        private const int um = 1;
-        private const int tres = 3;
-        private const int cem = 100;
-
         private readonly ProdutoDbContext _context;
+        private ProdutoServices ps;
 
         public ProdutosController(ProdutoDbContext context)
         {
             _context = context;
+            ps = new ProdutoServices(_context);
         }
+
+        
 
         // GET: api/Produtos
         [HttpGet]
@@ -45,42 +47,24 @@ namespace LojaAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Produto>> GetProduto(int id)
         {
-            var Produto = await _context.Loja.FindAsync(id);
-
-            if (Produto == null)
+            if (ps.getById(id) == null)
             {
                 return NotFound();
             }
 
-            return Produto;
+            return ps.getById(id);
         }
 
         // PUT: api/Produtos/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduto(int id, Produto produto)
+        public async Task<IActionResult> PutProduto(int id, [FromBody]Produto produto)
         {
             if (id != produto.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(produto).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProdutoExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            ps.alteraPorId(id, produto);
 
             return NoContent();
         }
@@ -91,17 +75,16 @@ namespace LojaAPI.Controllers
         {
             try
             {
-                if(produto.Nome.Length < tres)
+                if(produto.Nome.Length < Constantes.TRES)
                 {
                     return ValidationProblem();
                 }
-                if(produto.Qtde_estoque < um || produto.Qtde_estoque > cem)
+                if(produto.Qtde_estoque < Constantes.UM || produto.Qtde_estoque > Constantes.CEM)
                 {
                     return ValidationProblem();
                 }
 
-                _context.Loja.Add(produto);
-                await _context.SaveChangesAsync();
+                ps.addProduto(produto);
             }
             catch (Exception e)
             {
@@ -124,15 +107,9 @@ namespace LojaAPI.Controllers
                 return NotFound();
             }
 
-            _context.Loja.Remove(produto);
-            await _context.SaveChangesAsync();
+            ps.removeProduto(produto);
 
-            return produto;
-        }
-
-        private bool ProdutoExists(int id)
-        {
-            return _context.Loja.Any(e => e.Id == id);
+            return Ok();
         }
     }
 }
