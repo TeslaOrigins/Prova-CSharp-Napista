@@ -22,9 +22,7 @@ namespace LojaAPI.Controllers
         {
             _context = context;
             ps = new ProdutoServices(_context);
-        }
-
-        
+        }        
 
         // GET: api/Produtos
         [HttpGet]
@@ -47,12 +45,12 @@ namespace LojaAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Produto>> GetProduto(int id)
         {
-            if (ps.getById(id) == null)
+            if (ps.GetById(id) == null)
             {
                 return NotFound();
             }
 
-            return ps.getById(id);
+            return ps.GetById(id);
         }
 
         // PUT: api/Produtos/5
@@ -64,7 +62,7 @@ namespace LojaAPI.Controllers
                 return BadRequest();
             }
 
-            ps.alteraPorId(id, produto);
+            ps.AlteraPorId(id);
 
             return NoContent();
         }
@@ -84,7 +82,7 @@ namespace LojaAPI.Controllers
                     return ValidationProblem();
                 }
 
-                ps.addProduto(produto);
+                ps.AddProduto(produto);
             }
             catch (Exception e)
             {
@@ -101,13 +99,13 @@ namespace LojaAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Produto>> DeleteProduto(int id)
         {
-            var produto = await _context.Loja.FindAsync(id);
+            var produto = _context.Loja.Find(id);
             if (produto == null)
             {
                 return NotFound();
             }
 
-            ps.removeProduto(produto);
+            ps.RemoveProduto(produto);
 
             return Ok();
         }

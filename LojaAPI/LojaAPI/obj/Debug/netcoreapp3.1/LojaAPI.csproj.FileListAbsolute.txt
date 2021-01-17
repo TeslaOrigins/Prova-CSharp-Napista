@@ -6,7 +6,6 @@ D:\UFS\Prova C# Napista\LojaAPI\LojaAPI\bin\Debug\netcoreapp3.1\LojaAPI.runtimec
 D:\UFS\Prova C# Napista\LojaAPI\LojaAPI\bin\Debug\netcoreapp3.1\LojaAPI.runtimeconfig.dev.json
 D:\UFS\Prova C# Napista\LojaAPI\LojaAPI\bin\Debug\netcoreapp3.1\LojaAPI.dll
 D:\UFS\Prova C# Napista\LojaAPI\LojaAPI\bin\Debug\netcoreapp3.1\LojaAPI.pdb
-D:\UFS\Prova C# Napista\LojaAPI\LojaAPI\obj\Debug\netcoreapp3.1\LojaAPI.csprojAssemblyReference.cache
 D:\UFS\Prova C# Napista\LojaAPI\LojaAPI\obj\Debug\netcoreapp3.1\LojaAPI.AssemblyInfoInputs.cache
 D:\UFS\Prova C# Napista\LojaAPI\LojaAPI\obj\Debug\netcoreapp3.1\LojaAPI.AssemblyInfo.cs
 D:\UFS\Prova C# Napista\LojaAPI\LojaAPI\obj\Debug\netcoreapp3.1\LojaAPI.csproj.CoreCompileInputs.cache
@@ -185,3 +184,4 @@ D:\UFS\Prova C# Napista\LojaAPI\LojaAPI\bin\Debug\netcoreapp3.1\runtimes\win-x86
 D:\UFS\Prova C# Napista\LojaAPI\LojaAPI\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 D:\UFS\Prova C# Napista\LojaAPI\LojaAPI\bin\Debug\netcoreapp3.1\runtimes\linux-mips64\native\libe_sqlite3.so
 D:\UFS\Prova C# Napista\LojaAPI\LojaAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+D:\UFS\Prova C# Napista\LojaAPI\LojaAPI\obj\Debug\netcoreapp3.1\LojaAPI.csprojAssemblyReference.cache

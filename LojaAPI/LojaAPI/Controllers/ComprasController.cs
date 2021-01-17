@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using LojaAPI.Services;
 using LojaAPI.Models.Compras;
 using LojaAPI.Models.Misc;
+using LojaAPI.Models.Produtos;
+using LojaAPI.Models;
+using LojaAPI.Models.Compra;
 
 namespace LojaAPI.Controllers
 {
@@ -14,33 +18,37 @@ namespace LojaAPI.Controllers
     [ApiController]
     public class ComprasController : ControllerBase
     {
-        private const int cem = 100;
         private readonly CompraDbContext _context;
+        private readonly ProdutoDbContext _context1;
 
-        public ComprasController(CompraDbContext context)
+        public ComprasController(CompraDbContext context, ProdutoDbContext context1)
         {
             _context = context;
+            _context1 = context1;
         }
 
         // POST: api/Compras
         [HttpPost]
         public async Task<ActionResult<Compra>> PostCompra(Compra compra)
         {
-            String estado = "";
-            Detalhes detalhes = new Detalhes(compra.Valor, estado);
-            PagamentoServices ps = new PagamentoServices();
+            ProdutoServices ps = new ProdutoServices(_context1);
+            PagamentoServices pgs = new PagamentoServices();
 
-            if (!ps.ValidaPagamento(compra))
+            var Produto = ps.GetById(compra.Produto_id);
+
+            if(Produto.Qtde_estoque > compra.Qtde_comprada)
             {
-                detalhes.Estado = "REJEITADO";
-                return Unauthorized(detalhes);
+                ps.AlteraPorId(Produto.Id);
+            } else
+            {
+                ps.RemoveProduto(Produto);
             }
 
-            detalhes.Estado = "AUTORIZADO";
             _context.Loja.Add(compra);
             await _context.SaveChangesAsync();
 
-            return Ok(detalhes);
+            return Ok();
         }
+
     }
 }

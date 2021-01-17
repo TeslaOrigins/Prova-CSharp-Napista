@@ -11,20 +11,14 @@ namespace LojaAPI.Services
 {
     public class PagamentoServices
     {
-        private const int cem = 100;
-        public Boolean ValidaPagamento(Compra compra)
+        public Boolean ValidaPagamento(Double valor)
         {
-            if (compra.Valor <= cem)
+            if (valor <= Constantes.CEM)
             {
                 return false;
             }
 
             return true;
         }
-
-        /*public Boolean getById(int id)
-        {
-
-        }*/
     }
 }

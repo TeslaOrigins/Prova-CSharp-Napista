@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace LojaAPI.Models.Compras
+namespace LojaAPI.Models.Compra
 {
     public class CompraDbContext : DbContext
     {

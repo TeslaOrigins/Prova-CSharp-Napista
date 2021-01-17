@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using LojaAPI.Models.Compras;
 
-namespace LojaAPI.Models.Compra
+namespace LojaAPI.Models.Compras
 {
-    public class Compra
+    public class Pagamento
     {
         public int Id { get; set; }
-        public int Produto_id { get; set; }
-        public int Qtde_comprada { get; set; }
+        public float Valor { get; set; }
         public Cartao Cartao { get; set; }
     }
 }

@@ -14,6 +14,7 @@ namespace LojaAPI
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+            System.Console.WriteLine("Started");
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

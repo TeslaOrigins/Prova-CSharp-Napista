@@ -5,10 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Models\Compras\Cartao\**" />
-    <Content Remove="Models\Compras\Cartao\**" />
-    <EmbeddedResource Remove="Models\Compras\Cartao\**" />
-    <None Remove="Models\Compras\Cartao\**" />
+    <Compile Remove="Models\Pagamentos\Cartao\**" />
+    <Content Remove="Models\Pagamentos\Cartao\**" />
+    <EmbeddedResource Remove="Models\Pagamentos\Cartao\**" />
+    <None Remove="Models\Pagamentos\Cartao\**" />
   </ItemGroup>
 
   <ItemGroup>

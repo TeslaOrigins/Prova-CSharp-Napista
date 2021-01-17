@@ -19,6 +19,8 @@ namespace LojaAPI.Services
             _context = context;
         }
 
+        public ProdutoServices() { }
+
         public Boolean ValidaProduto(Produto produto)
         {
             if (produto == null)
@@ -29,7 +31,7 @@ namespace LojaAPI.Services
             return true;
         }
 
-        public Produto getById(int id)
+        public Produto GetById(int id)
         {
             var produto = _context.Loja.Find(id);
 
@@ -41,36 +43,13 @@ namespace LojaAPI.Services
             return produto;
         }
 
-        /*public IActionResult alteraPorId(int id, Produto produto)
-        {
-            _context.Entry(produto).State = EntityState.Modified;
-
-            try
-            {
-                _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProdutoExists(id))
-                {
-                    return null;
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return null;
-        }*/
-
-        public IActionResult alteraPorId(int id, Produto produto)
+        public IActionResult AlteraPorId(int id)
         {
             ProdutoExists(id);
 
             try
             {
-                _context.SaveChangesAsync();
+                _context.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -87,16 +66,16 @@ namespace LojaAPI.Services
             return null;
         }
 
-        public void addProduto(Produto produto)
+        public void AddProduto(Produto produto)
         {
             _context.Loja.Add(produto);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
-        public void removeProduto(Produto produto)
+        public void RemoveProduto(Produto produto)
         {
             _context.Loja.Remove(produto);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         private bool ProdutoExists(int id)
