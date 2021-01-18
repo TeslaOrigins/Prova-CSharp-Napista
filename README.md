@@ -49,14 +49,23 @@ Configurada a conexão da Api com o Banco de Dados, é necessario fazer o downlo
     * Valor_unitario ( O preço do produto à ser alterado )
     * Qtde_estoque ( A nova quantidade disponivel do produto )
 Seguindo esse formato a requisição atualizará as informações no banco de dados com as novas que foram passadas.
-* A requisição de autorizar pagamentos funciona na rota api/Produtos/compras e recebe os seguintes parametros no corpo da requição POST em formato JSON:
+* A requisição de autorizar pagamentos funciona na rota api/Pagamentos/compras e recebe os seguintes parametros no corpo da requição POST em formato JSON:
   * Valor ( valor da compra a ser autorizada, seguindo a regra de: compras são aceitas se o seu valor for maior que 100 )
   * Cartao: ( Objeto que contem os dados do cartão )
     * Titular ( Nome do titular do cartão )
     * Numero_cartao ( Numero do cartão )
     * Data_expiracao ( Data de validade do cartão )
     * Bandeira ( Bandeira do cartão )
-    * Cvv ( Codigo de verificação do cartão ) 
+    * Cvv ( Codigo de verificação do cartão )
+* A requisição de cadastrar compras funciona na rota api/Compras e recebe os seguintes parametros no corpo da requição POST em formato JSON:
+  * Produto_id ( Identificador do produto no banco de dados )
+  * Qtde_comprada ( Quantidade do objeto para compra )
+  * Cartao: ( Objeto que contem os dados do cartão )
+    * Titular ( Nome do titular do cartão )
+    * Numero_cartao ( Numero do cartão )
+    * Data_expiracao ( Data de validade do cartão )
+    * Bandeira ( Bandeira do cartão )
+    * Cvv ( Codigo de verificação do cartão )  
 
 # Execução
 
