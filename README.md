@@ -93,7 +93,6 @@ O servidor devolverá a lista de todos os produtos cadastrados caso o servidor t
             * Constantes - Arquivo com constantes parametrizadas a fim de organização e manutenibilidade de codigo
             * Detalhes - Arquivo para facilitar o retorno personalizado de requisições
         * Pagamentos - contém os arquivos relacionados ao pagamento:
-            * Cartao - Modelo de cartao para recepção de dados
             * Pagamento - Modelo de pagamento para requição
         * Produtos - contém os arquivos relacionados aos produtos:
             * Produto - Modelo de produto para requisições
