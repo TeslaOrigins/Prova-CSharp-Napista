@@ -48,7 +48,7 @@ Configurada a conexão da Api com o Banco de Dados, é necessario fazer o downlo
     * Valor_unitario ( O preço do produto a ser alterado )
     * Qtde_estoque ( A nova quantidade disponivel do produto )
 Seguindo esse formato a requisição atualizará as informações no banco de dados com as novas que foram passadas.
-* A requisição de autorizar pagamentos funciona na rota api/Produtos e recebe os seguintes parametros no corpo da requição POST em formato JSON:
+* A requisição de autorizar pagamentos funciona na rota api/Produtos/compras e recebe os seguintes parametros no corpo da requição POST em formato JSON:
   * Valor ( valor da compra a ser autorizada, seguindo a regra de: compras são aceitas se o seu valor for maior que 100 )
   * Cartao: ( Objeto que contem os dados do cartão )
     * Titular ( Nome do titular do cartão )
@@ -59,7 +59,7 @@ Seguindo esse formato a requisição atualizará as informações no banco de da
 
 # Execução
 
-Para executar o servidor do chat, basta abrir o visual studio e executar o projeto no modo IIS Express.
+Para executar o servidor da api, basta abrir o visual studio e executar o projeto no modo IIS Express.
 
 # Teste
 

@@ -26,6 +26,8 @@ namespace LojaAPI.Controllers
 
         // GET: api/Produtos
         [HttpGet]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
         public async Task<ActionResult<IEnumerable<Produto>>> GetProdutos()
         {
             try
@@ -35,7 +37,7 @@ namespace LojaAPI.Controllers
             {
                 if(e.Source != null)
                 {
-                    return BadRequest();
+                    return BadRequest("Ocorreu um erro desconhecido");
                 }
             }
             return await _context.Loja.ToListAsync();
@@ -43,43 +45,51 @@ namespace LojaAPI.Controllers
 
         // GET: api/Produtos/5
         [HttpGet("{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
         public async Task<ActionResult<Produto>> GetProduto(int id)
         {
             if (ps.GetById(id) == null)
             {
-                return NotFound();
+                return BadRequest("Ocorreu um erro desconhecido");
             }
 
+            Ok();
             return ps.GetById(id);
         }
 
         // PUT: api/Produtos/5
         [HttpPut("{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> PutProduto(int id, [FromBody]Produto produto)
         {
             if (id != produto.Id)
             {
-                return BadRequest();
+                return BadRequest("Ocorreu um erro desconhecido");
             }
 
-            ps.AlteraPorId(produto);
+            ps.AlteraProduto(produto);
 
-            return NoContent();
+            return Ok("Produto atualizado com sucesso");
         }
 
         // POST: api/Produtos
         [HttpPost]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(412)]
         public async Task<ActionResult<Produto>> PostProduto(Produto produto)
         {
             try
             {
                 if(produto.Nome.Length < Constantes.TRES)
                 {
-                    return ValidationProblem();
+                    return ValidationProblem("Os valores informados não são válidos");
                 }
                 if(produto.Qtde_estoque < Constantes.UM || produto.Qtde_estoque > Constantes.CEM)
                 {
-                    return ValidationProblem();
+                    return ValidationProblem("Os valores informados não são válidos");
                 }
 
                 ps.AddProduto(produto);
@@ -88,7 +98,7 @@ namespace LojaAPI.Controllers
             {
                 if (e.Source != null)
                 {
-                    return BadRequest();
+                    return BadRequest("Ocorreu um erro desconhecido");
                 }
                 throw;
             }
@@ -97,17 +107,19 @@ namespace LojaAPI.Controllers
 
         // DELETE: api/Produtos/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
         public async Task<ActionResult<Produto>> DeleteProduto(int id)
         {
             var produto = _context.Loja.Find(id);
             if (produto == null)
             {
-                return NotFound();
+                return BadRequest("Ocorreu um erro desconhecido");
             }
 
             ps.RemoveProduto(produto);
 
-            return Ok();
+            return Ok("Produto Excluído com sucesso");
         }
     }
 }

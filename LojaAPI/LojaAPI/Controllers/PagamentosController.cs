@@ -25,6 +25,7 @@ namespace LojaAPI.Controllers
 
         // POST: api/Pagamentos
         [HttpPost]
+        [Route("compras")]
         public async Task<ActionResult<Pagamento>> PostAutorizaPagamentos(Pagamento pagamento)
         {
             String estado = "";
@@ -33,11 +34,11 @@ namespace LojaAPI.Controllers
 
             if (!ps.ValidaPagamento(pagamento.Valor))
             {
-                detalhes.Estado = "REJEITADO";
+                detalhes.Estado = Constantes.REJEITADO;
                 return Unauthorized(detalhes);
             }
 
-            detalhes.Estado = "APROVADO";
+            detalhes.Estado = Constantes.APROVADO;
 
             return Ok(detalhes);
         }

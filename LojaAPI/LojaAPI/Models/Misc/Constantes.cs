@@ -10,5 +10,8 @@ namespace LojaAPI.Models.Misc
         public const int UM = 1;
         public const int TRES = 3;
         public const int CEM = 100;
+
+        public const String APROVADO = "APROVADO";
+        public const String REJEITADO = "REJEITADO";
     }
 }

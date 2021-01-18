@@ -29,17 +29,35 @@ namespace LojaAPI.Controllers
 
         // POST: api/Compras
         [HttpPost]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(412)]
         public async Task<ActionResult<Compra>> PostCompra(Compra compra)
         {
             ProdutoServices ps = new ProdutoServices(_context1);
             PagamentoServices pgs = new PagamentoServices();
+            Detalhes detalhes = new Detalhes();
+            detalhes.Estado = "";
 
             var Produto = ps.GetById(compra.Produto_id);
+            if(Produto == null)
+            {
+                return BadRequest("Produto não encontrado");
+            }
+
+            double preco = compra.Qtde_comprada * Produto.Valor_unitario;
+
+            if (!pgs.ValidaPagamento(preco))
+            {
+                detalhes.Estado = Constantes.REJEITADO;
+                detalhes.Valor = preco;
+                return BadRequest(detalhes);
+            }
 
             if(Produto.Qtde_estoque > compra.Qtde_comprada)
             {
                 Produto.Qtde_estoque = Produto.Qtde_estoque - compra.Qtde_comprada;
-                ps.AlteraPorId(Produto);
+                ps.AlteraProduto(Produto);
             } else
             {
                 ps.RemoveProduto(Produto);
@@ -48,7 +66,7 @@ namespace LojaAPI.Controllers
             _context.Loja.Add(compra);
             await _context.SaveChangesAsync();
 
-            return Ok();
+            return Ok("Venda realizada com sucesso");
         }
 
     }

@@ -43,7 +43,7 @@ namespace LojaAPI.Services
             return produto;
         }
 
-        public IActionResult AlteraPorId(Produto produto)
+        public IActionResult AlteraProduto(Produto produto)
         {
             ProdutoExists(produto.Id);
             Produto produto1 = GetById(produto.Id);
