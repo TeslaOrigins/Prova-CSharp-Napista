@@ -16,7 +16,7 @@ Existem 7 tipos de  requisição. Sendo elas:
 Com essas funcionalidades é possível utilizar o servidor para realizar requisições na porta 44343 com um ip local.
 
 # Instalação
-Primeiro é necessário instalar as dependências do servidor começando pelo Visual Studio 2019, logo após a instalação do Visual Studio é necessario instalar uma interface gerenciadora de banco de dados, a fim de verificação das funcionalidades de cadastro, utilizando [Microsoft SQL Server Management Studio](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15) (SSMS) e [SQL Server Express](https://download.microsoft.com/download/7/f/8/7f8a9c43-8c8a-4f7c-9f92-83c18d96b681/SQL2019-SSEI-Expr.exe).
+Primeiro é necessário instalar as dependências do servidor começando pelo Visual Studio 2019, logo após a instalação do Visual Studio é necessario instalar uma interface gerenciadora de banco de dados, a fim de verificação das funcionalidades de cadastro, utilizando [Microsoft SQL Server Management Studio](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15) (SSMS) e [SQL Server Express](https://download.microsoft.com/download/7/f/8/7f8a9c43-8c8a-4f7c-9f92-83c18d96b681/SQL2019-SSEI-Expr.exe) é possivel usar uma copia do banco que foi usado durante o desenvolvimento a fim de facilitar o teste das funcionalidades, essa copia se encontra na pasta "Backup Banco".
 
 Após a instalação do servidor e do gerenciador de banco de dados, é necessario alterar a ConnectionString localizada no arquivo appsettings.json, é necessario alterar o endereço do servidor para o endereço criado pelo SQL Server Express, é possivel achar esse endereço ao iniciar o SSMS.
 
