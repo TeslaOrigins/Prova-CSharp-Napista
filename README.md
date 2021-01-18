@@ -44,8 +44,9 @@ Configurada a conexão da Api com o Banco de Dados, é necessario fazer o downlo
 * A requisição de listar um produto especifico funciona na rota api/Produtos/:id, onde ":id" é um inteiro que representa o id do produto no banco de dados, Exemplo: "localhost:44343/api/Produtos/1", a requisição GET deverá ser enviada e receberá os dados do produto do qual o id fora requisitado.
 * A requisição de remover produtos funciona na rota api/Produtos/:id, onde ":id" é um inteiro que representa o id do produto no banco de dados, Exemplo: "localhost:44343/api/Produtos/1", a requisição DELETE deverá ser enviada e removerá este produto do banco.
 * A requisição de atualizar os dados de um produto funciona na rota api/Produtos/:id, onde ":id" é um inteiro que representa o id do usuario no banco de dados e será enviado como parametro, Exemplo: "localhost:44343/api/Produtos/1", a requisição PUT deverá ser enviada e conter o seguinte formato no corpo da requisição:
+    * Id ( Id do produto à ser alterado )
     * Nome ( o nome do produto à ser alterado no banco de dados )
-    * Valor_unitario ( O preço do produto a ser alterado )
+    * Valor_unitario ( O preço do produto à ser alterado )
     * Qtde_estoque ( A nova quantidade disponivel do produto )
 Seguindo esse formato a requisição atualizará as informações no banco de dados com as novas que foram passadas.
 * A requisição de autorizar pagamentos funciona na rota api/Produtos/compras e recebe os seguintes parametros no corpo da requição POST em formato JSON:
@@ -93,6 +94,7 @@ O servidor devolverá a lista de todos os produtos cadastrados caso o servidor t
             * Constantes - Arquivo com constantes parametrizadas a fim de organização e manutenibilidade de codigo
             * Detalhes - Arquivo para facilitar o retorno personalizado de requisições
         * Pagamentos - contém os arquivos relacionados ao pagamento:
+            * Cartap - Modelo de cartao para verificação de validade
             * Pagamento - Modelo de pagamento para requição
         * Produtos - contém os arquivos relacionados aos produtos:
             * Produto - Modelo de produto para requisições
