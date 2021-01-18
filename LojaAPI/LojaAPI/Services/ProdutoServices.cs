@@ -43,17 +43,21 @@ namespace LojaAPI.Services
             return produto;
         }
 
-        public IActionResult AlteraPorId(int id)
+        public IActionResult AlteraPorId(Produto produto)
         {
-            ProdutoExists(id);
-
+            ProdutoExists(produto.Id);
+            Produto produto1 = GetById(produto.Id);
             try
             {
+                produto1.Nome = produto.Nome;
+                produto1.Qtde_estoque = produto.Qtde_estoque;
+                produto1.Valor_unitario = produto.Valor_unitario;
+
                 _context.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProdutoExists(id))
+                if (!ProdutoExists(produto.Id))
                 {
                     return null;
                 }

@@ -38,7 +38,8 @@ namespace LojaAPI.Controllers
 
             if(Produto.Qtde_estoque > compra.Qtde_comprada)
             {
-                ps.AlteraPorId(Produto.Id);
+                Produto.Qtde_estoque = Produto.Qtde_estoque - compra.Qtde_comprada;
+                ps.AlteraPorId(Produto);
             } else
             {
                 ps.RemoveProduto(Produto);

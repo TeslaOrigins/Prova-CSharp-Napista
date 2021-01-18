@@ -62,7 +62,7 @@ namespace LojaAPI.Controllers
                 return BadRequest();
             }
 
-            ps.AlteraPorId(id);
+            ps.AlteraPorId(produto);
 
             return NoContent();
         }
