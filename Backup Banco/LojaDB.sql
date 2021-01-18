@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [LojaDB]    Script Date: 18/01/2021 10:44:52 ******/
+/****** Object:  Database [LojaDB]    Script Date: 18/01/2021 12:39:44 ******/
 CREATE DATABASE [LojaDB]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -80,12 +80,12 @@ ALTER DATABASE [LojaDB] SET QUERY_STORE = OFF
 GO
 USE [LojaDB]
 GO
-/****** Object:  User [DESKTOP-0S9KD9N\Tesla]    Script Date: 18/01/2021 10:44:52 ******/
+/****** Object:  User [DESKTOP-0S9KD9N\Tesla]    Script Date: 18/01/2021 12:39:44 ******/
 CREATE USER [DESKTOP-0S9KD9N\Tesla] FOR LOGIN [DESKTOP-0S9KD9N\Tesla] WITH DEFAULT_SCHEMA=[dbo]
 GO
 ALTER ROLE [db_owner] ADD MEMBER [DESKTOP-0S9KD9N\Tesla]
 GO
-/****** Object:  Table [dbo].[Compra]    Script Date: 18/01/2021 10:44:52 ******/
+/****** Object:  Table [dbo].[Compra]    Script Date: 18/01/2021 12:39:44 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -100,7 +100,7 @@ CREATE TABLE [dbo].[Compra](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Produto]    Script Date: 18/01/2021 10:44:52 ******/
+/****** Object:  Table [dbo].[Produto]    Script Date: 18/01/2021 12:39:44 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -110,6 +110,8 @@ CREATE TABLE [dbo].[Produto](
 	[Nome] [nvarchar](255) NOT NULL,
 	[Valor_unitario] [float] NOT NULL,
 	[Qtde_estoque] [int] NOT NULL,
+	[Data_ultima_venda] [varchar](255) NULL,
+	[Valor_ultima_venda] [float] NULL,
  CONSTRAINT [PK_Produto] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC

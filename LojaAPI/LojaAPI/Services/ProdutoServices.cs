@@ -43,15 +43,27 @@ namespace LojaAPI.Services
             return produto;
         }
 
-        public IActionResult AlteraProduto(Produto produto)
+        public IActionResult AlteraProduto(Produto produto, double? valor_compra, int flag)
         {
             ProdutoExists(produto.Id);
             Produto produto1 = GetById(produto.Id);
             try
             {
-                produto1.Nome = produto.Nome;
-                produto1.Qtde_estoque = produto.Qtde_estoque;
-                produto1.Valor_unitario = produto.Valor_unitario;
+                if (flag == 1)
+                {
+                    produto1.Nome = produto.Nome;
+                    produto1.Qtde_estoque = produto.Qtde_estoque;
+                    produto1.Valor_unitario = produto.Valor_unitario;
+                    produto1.Data_ultima_venda = DateTime.Now.ToString();
+                    produto1.Valor_ultima_venda = valor_compra;
+                } else
+                {
+                    produto1.Nome = produto.Nome;
+                    produto1.Qtde_estoque = produto.Qtde_estoque;
+                    produto1.Valor_unitario = produto.Valor_unitario;
+                    produto1.Data_ultima_venda = null;
+                    produto1.Valor_ultima_venda = valor_compra;
+                }
 
                 _context.SaveChanges();
             }

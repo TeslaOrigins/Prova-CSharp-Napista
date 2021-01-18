@@ -13,5 +13,8 @@ namespace LojaAPI.Models.Misc
 
         public const String APROVADO = "APROVADO";
         public const String REJEITADO = "REJEITADO";
+
+        public const int FLAG_COMPRA = 1;
+        public const int FLAG_ALTERA_PRODUTO = 2;
     }
 }

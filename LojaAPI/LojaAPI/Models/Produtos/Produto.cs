@@ -15,5 +15,7 @@ namespace LojaAPI.Models
         [Range(1, 100)]
         [DataType(DataType.Currency)]
         public int Qtde_estoque { get; set; }
+        public String? Data_ultima_venda { get; set; }
+        public double? Valor_ultima_venda { get; set; }
     }
 }

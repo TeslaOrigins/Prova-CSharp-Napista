@@ -69,7 +69,7 @@ namespace LojaAPI.Controllers
                 return BadRequest("Ocorreu um erro desconhecido");
             }
 
-            ps.AlteraProduto(produto);
+            ps.AlteraProduto(produto, null, Constantes.FLAG_ALTERA_PRODUTO);
 
             return Ok("Produto atualizado com sucesso");
         }

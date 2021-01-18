@@ -57,7 +57,7 @@ namespace LojaAPI.Controllers
             if(Produto.Qtde_estoque > compra.Qtde_comprada)
             {
                 Produto.Qtde_estoque = Produto.Qtde_estoque - compra.Qtde_comprada;
-                ps.AlteraProduto(Produto);
+                ps.AlteraProduto(Produto, preco, Constantes.FLAG_COMPRA);
             } else
             {
                 ps.RemoveProduto(Produto);
